@@ -30,14 +30,14 @@ jobs:
         run: |
           dotnet restore
           dotnet build --configuration Release
-          dotnet publish -c Release -o '${{ env.'$(System.DefaultWorkingDirectory)/**/*.zip' }}/app1000-new' 
+          dotnet publish -c Release -o '${{ env.'https://github.com/sundar2021/server100' }}/app1000-new' 
           
       # Deploy to Azure Web apps
       - name: 'Run Azure webapp deploy action using publish profile credentials'
         uses: azure/webapps-deploy@v2
         with: 
           app-name: ${{ env.app1000-new }} # Replace with your app name
-          package: '${{ env.'$(System.DefaultWorkingDirectory)/**/*.zip' }}/app1000-new'
+          package: '${{ env.'$https://github.com/sundar2021/server100' }}/app1000-new'
       
       - name: logout
         run: |
