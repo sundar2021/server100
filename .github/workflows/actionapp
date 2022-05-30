@@ -8,37 +8,31 @@ env:
   DOTNET_VERSION: '3.1.x'           # set this to the dot net version to use
 
 jobs:
-  build:
+name: GitHubActions-HelloWorld
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  examplejob:
+  
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repo
-      - uses: actions/checkout@main
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.devopsq }}
 
+    - name: Say hello
+      run: Write-Host "Hello from GitHub..."
+      shell: pwsh
       
-      # Setup .NET Core SDK
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }} 
+    - name: Checkout repo
+      uses: actions/checkout@v2
       
-      # Run dotnet build and publish
-      - name: dotnet build and publish
-        run: |
-          dotnet restore
-          dotnet build --configuration Release
-          dotnet publish -c Release -o '${{ env.'https://github.com/sundar2021/server100' }}/app1000-new' 
-          
-      # Deploy to Azure Web apps
-      - name: 'Run Azure webapp deploy action using publish profile credentials'
-        uses: azure/webapps-deploy@v2
-        with: 
-          app-name: ${{ env.app1000-new }} # Replace with your app name
-          package: '${{ env.'https://github.com/sundar2021/server100' }}/app1000-new'
+    - name: Inspect GitHub workflows
+      run: ls -la $GITHUB_WORKSPACE/.github…
+      shell: bash
       
-      - name: logout
-        run: |
-          az logout
+    - name: Use .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
