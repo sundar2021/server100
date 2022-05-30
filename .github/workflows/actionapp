@@ -37,7 +37,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with: 
           app-name: ${{ env.app1000-new }} # Replace with your app name
-          package: '${{ env.'$https://github.com/sundar2021/server100' }}/app1000-new'
+          package: '${{ env.'https://github.com/sundar2021/server100' }}/app1000-new'
       
       - name: logout
         run: |
